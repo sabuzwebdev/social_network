@@ -16,3 +16,7 @@ Route::get('/',[
     'uses'=>'HomeController@index',
     'as'=>'home'//route name
 ]);
+
+Route::get('/alert',function(){
+    return redirect()->route('home')->with('info','You are in Home page now');
+});
