@@ -11,12 +11,27 @@
 |
 */
 
-
+/*
+ * Home
+ */
 Route::get('/',[
     'uses'=>'HomeController@index',
     'as'=>'home'//route name
 ]);
 
-Route::get('/alert',function(){
-    return redirect()->route('home')->with('info','You are in Home page now');
-});
+
+
+/*
+ * Authentication
+ */
+
+Route::get('/signup',[
+    'uses'=>'AuthController@getSignup',
+    'as'=>'auth.signup'
+]);
+Route::post('/signup',[
+    'uses'=>'AuthController@postSignup', //though route is for get signup
+                                        //but it will also share for post
+                                        //when form is submitted
+
+]);

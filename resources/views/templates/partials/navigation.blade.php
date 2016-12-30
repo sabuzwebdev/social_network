@@ -22,7 +22,7 @@
                 <li><a href="#">Profile Update</a></li>
                 <li><a href="#">Sign out</a></li>
 
-                <li><a href="#">Sign up</a></li>
+                <li><a href="{{ route('auth.signup') }}">Sign up</a></li>
                 <li><a href="#">Sign in</a></li>
 
             </ul>
