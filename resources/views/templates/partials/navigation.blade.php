@@ -6,24 +6,33 @@
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#">Timeline</a></li>
-                <li><a href="#">Friends</a></li>
-            </ul>
+            @if(Auth::check())
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Timeline</a></li>
+                    <li><a href="#">Friends</a></li>
+                </ul>
 
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            @endif
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Name</a></li>
-                <li><a href="#">Profile Update</a></li>
-                <li><a href="#">Sign out</a></li>
 
-                <li><a href="{{ route('auth.signup') }}">Sign up</a></li>
-                <li><a href="#">Sign in</a></li>
+                @if(Auth::check())
+                    <li><a href="#">{{ Auth::user()->getNameOrUsername() }}</a></li>
+                    <li><a href="#">Profile Update</a></li>
+                    <li><a href="{{ route('auth.signout') }}">Sign out</a></li>
+                @else
+                    <li><a href="{{ route('auth.signup') }}">Sign up</a></li>
+                    <li><a href="{{ route('auth.signin') }}">Sign in</a></li>
+                @endif
+
+
+
 
             </ul>
         </div><!-- /.navbar-collapse -->

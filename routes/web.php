@@ -27,11 +27,27 @@ Route::get('/',[
 
 Route::get('/signup',[
     'uses'=>'AuthController@getSignup',
-    'as'=>'auth.signup'
+    'as'=>'auth.signup',
+    'middleware'=>['guest']
 ]);
 Route::post('/signup',[
     'uses'=>'AuthController@postSignup', //though route is for get signup
                                         //but it will also share for post
                                         //when form is submitted
 
+]);
+
+Route::get('/signin',[
+    'uses'=>'AuthController@getSignin',
+    'as'=>'auth.signin',
+    'middleware'=>['guest']
+]);
+Route::post('/signin',[
+    'uses'=>'AuthController@postSignin',
+
+]);
+Route::get('/signout',[
+    'uses'=>'AuthController@getSignout',
+    'as'=>'auth.signout',
+    'middleware'=>['auth']
 ]);
