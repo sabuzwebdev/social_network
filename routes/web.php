@@ -51,3 +51,29 @@ Route::get('/signout',[
     'as'=>'auth.signout',
     'middleware'=>['auth']
 ]);
+
+/*
+ * Search
+ */
+Route::get('/search',[
+    'uses'=>'SearchController@getResults',
+    'as'=> 'search.results',
+    'middleware'=>['auth']
+]);
+
+/*
+ * User profile
+ */
+Route::get('/user/{username}',[
+    'uses' => 'ProfileController@getProfile',
+    'as' => 'profile.index'
+]);
+Route::get('/profile/edit',[
+    'uses' => 'ProfileController@getEdit',
+    'as' => 'profile.edit',
+    'middleware'=>['auth']
+]);
+Route::post('/profile/edit',[
+    'uses' => 'ProfileController@postEdit',
+    'middleware'=>['auth']
+]);

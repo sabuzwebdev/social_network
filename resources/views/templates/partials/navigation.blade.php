@@ -2,7 +2,7 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a href="#" class="navbar-brand">Social Network</a>
+            <a href="{{ route('home') }}" class="navbar-brand">Social Network</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -12,9 +12,9 @@
                     <li><a href="#">Friends</a></li>
                 </ul>
 
-                <form class="navbar-form navbar-left">
+                <form class="navbar-form navbar-left" role="search" action="{{ route('search.results') }}">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" name="query" placeholder="Search">
                     </div>
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
@@ -23,8 +23,8 @@
             <ul class="nav navbar-nav navbar-right">
 
                 @if(Auth::check())
-                    <li><a href="#">{{ Auth::user()->getNameOrUsername() }}</a></li>
-                    <li><a href="#">Profile Update</a></li>
+                    <li><a href="{{ route('profile.index',['username'=> Auth::user()->username]) }}">{{ Auth::user()->getNameOrUsername() }}</a></li>
+                    <li><a href="{{ route('profile.edit') }}">Profile Update</a></li>
                     <li><a href="{{ route('auth.signout') }}">Sign out</a></li>
                 @else
                     <li><a href="{{ route('auth.signup') }}">Sign up</a></li>

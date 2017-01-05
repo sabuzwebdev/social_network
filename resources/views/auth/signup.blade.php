@@ -1,8 +1,9 @@
 @extends('templates.default')
 @section('content')
     <!--form for signup-->
+<h3>Sign Up</h3>
 <div class="row">
-    <h3>Sign Up</h3>
+
     <div class="col-lg-6">
         <form role="form" method="post" action="{{ route('auth.signup') }}">
             <div class="form-group {{ $errors->has('email') ? 'has-error':'' }}">
