@@ -57,4 +57,20 @@ class User extends Authenticatable
     public function getAvatarUrl(){
         return "https://www.gravatar.com/avatar/{{ md5($this->email)}}?d=mm&s=40";
     }
+    public function friendsOfMine(){
+        return $this->belongsToMany('App\User','friends','user_id','friend_id');
+    }
+    public function friendOf(){
+        return $this->belongsToMany('App\User','friends','friend_id','user_id');
+    }
+    public function friends(){
+        return $this->friendsOfMine()
+                    ->wherePivot('accepted',true)
+                    ->get()
+                    ->merge($this->friendOf()->wherePivot('accepted',true)->get());
+    }
+
+    public function friendRequests(){
+        return $this->friendOf()->wherePivot('accepted',false)->get();
+    }
 }
